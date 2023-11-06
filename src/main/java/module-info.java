@@ -3,7 +3,8 @@ module com.example.javafxtest2 {
     requires javafx.fxml;
 
     requires com.dlsc.formsfx;
+    requires com.google.gson;
 
-    opens com.example.javafxtest2 to javafx.fxml;
-    exports com.example.javafxtest2;
+    opens com.example.GUI to javafx.fxml;
+    exports com.example.GUI;
 }
