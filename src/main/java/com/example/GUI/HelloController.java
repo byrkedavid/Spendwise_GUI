@@ -57,18 +57,32 @@ public class HelloController {
 
     @FXML
     private void initialize() {
-        // Initialize the columns in the table
-        expenseNameColumn.setCellValueFactory(new PropertyValueFactory<>("expenseName"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        // Do not initialize the columns in the table here
     }
 
     public void switchToScene1(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("main-page.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        // Load the FXML for the main page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main-page.fxml"));
+        Parent root = loader.load();
+
+        // Get the controller from the loader
+        HelloController mainPageController = loader.getController();
+
+        // Initialize the columns in the table after loading the main page FXML
+        mainPageController.initializeTable();
+
+        // Set the stage and scene
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    // Add this method to initialize the table in the main page
+    public void initializeTable() {
+        expenseNameColumn.setCellValueFactory(new PropertyValueFactory<>("expenseName"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
     }
 
     @FXML

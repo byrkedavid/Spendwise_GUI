@@ -1,28 +1,32 @@
 package com.example.GUI;
 
-public class Transaction {
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
+public class Transaction {
     private String expenseName;
     private String category;
-    private double amount;
+    private DoubleProperty amount;
 
     public Transaction(String expenseName, String category, double amount) {
         this.expenseName = expenseName;
         this.category = category;
-        this.amount = amount;
+        this.amount = new SimpleDoubleProperty(amount);
     }
 
     public String getExpenseName() {
         return expenseName;
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return category;
     }
 
     public double getAmount() {
-        return amount;
+        return amount.get();
     }
 
-
+    public DoubleProperty amountProperty() {
+        return amount;
+    }
 }
