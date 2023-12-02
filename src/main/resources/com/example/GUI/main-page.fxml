@@ -10,14 +10,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.GUI.HelloController">
+<AnchorPane prefHeight="500.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.GUI.HelloController">
    <children>
-      <Button layoutX="357.0" layoutY="75.0" mnemonicParsing="false" onMouseClicked="#addExpense" prefWidth="85.0" text="Add Expense" />
-      <Button layoutX="357.0" layoutY="98.0" mnemonicParsing="false" onMouseClicked="#addDeposit" prefWidth="85.0" text="Add Deposit" />
-      <Button layoutX="357.0" layoutY="49.0" mnemonicParsing="false" onMouseClicked="#setBudget" prefWidth="85.0" text="Set Budget" />
-      <Text layoutX="18.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spendwise" wrappingWidth="148.5078125">
+      <Button layoutX="609.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#addDeposit" prefWidth="85.0" text="Add Deposit" />
+      <Button layoutX="609.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#setBudget" prefWidth="85.0" text="Set Budget" />
+      <Text layoutX="18.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spendwise" wrappingWidth="234.90782165527344">
          <font>
-            <Font size="30.0" />
+            <Font size="40.0" />
          </font>
       </Text>
       <Text fx:id="monthlyBudgetOut" layoutX="18.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monthly Budget: $0,000.00" wrappingWidth="331.707763671875">
@@ -30,19 +29,18 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" layoutX="18.0" layoutY="52.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <TextField fx:id="budgetIn" layoutX="443.0" layoutY="50.0" prefHeight="26.0" prefWidth="133.0" promptText="\$0,000.00" />
-      <TextField fx:id="depositIn" layoutX="443.0" layoutY="98.0" prefHeight="26.0" prefWidth="133.0" promptText="\$0,000.00" />
-      <TextField fx:id="expenseIn" layoutX="443.0" layoutY="74.0" prefHeight="26.0" prefWidth="133.0" promptText="\$0,000.00" />
-      <Button layoutX="357.0" layoutY="18.0" onAction="#recordExpense" text="Record Expense" />
-      <TableView fx:id="transactionTable" layoutX="18.0" layoutY="180.0" prefHeight="200.0" prefWidth="350.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3e9c35" height="11.0" layoutX="18.0" layoutY="55.0" stroke="BLACK" strokeType="INSIDE" width="206.0" />
+      <TextField fx:id="budgetIn" layoutX="695.0" layoutY="38.0" prefHeight="26.0" prefWidth="133.0" promptText="\$0,000.00" />
+      <TextField fx:id="depositIn" layoutX="695.0" layoutY="72.0" prefHeight="26.0" prefWidth="133.0" promptText="\$0,000.00" />
+      <Button layoutX="609.0" layoutY="112.0" onAction="#recordExpense" text="Record Expense" />
+      <TableView fx:id="transactionTable" layoutX="18.0" layoutY="167.0" prefHeight="307.0" prefWidth="473.0">
          <columns>
-            <TableColumn fx:id="expenseNameColumn" text="Expense" />
-            <TableColumn fx:id="categoryColumn" prefWidth="108.79998779296875" text="Category" />
-            <TableColumn fx:id="amountColumn" prefWidth="71.20001220703125" text="Amount" />
+            <TableColumn fx:id="expenseNameColumn" prefWidth="108.00000381469727" text="Expense" />
+            <TableColumn fx:id="categoryColumn" prefWidth="108.0" text="Category" />
+            <TableColumn fx:id="amountColumn" prefWidth="107.19999694824219" text="Amount" />
          </columns>
       </TableView>
-      <PieChart fx:id="transactionChart" layoutX="377.0" layoutY="180.0" prefHeight="200.0" prefWidth="208.0" />
+      <PieChart fx:id="transactionChart" layoutX="497.0" layoutY="166.0" prefHeight="307.0" prefWidth="348.0" />
 
    </children>
 </AnchorPane>

@@ -20,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.*;
 import java.text.DecimalFormat;
+import java.util.Optional;
 
 
 public class HelloController {
@@ -93,9 +94,8 @@ public class HelloController {
     }
 
     @FXML
-    void addExpense(MouseEvent event) {
-        expense = Float.parseFloat(expenseIn.getText());
-        remainingBudget -= expense;
+    void addExpense(float amount) {
+        remainingBudget -= amount;
         updateRemainingBudget(remainingBudget);
     }
 
@@ -105,6 +105,12 @@ public class HelloController {
         remainingBudget = budget;
         monthlyBudgetOut.setText("Monthly Budget: $" + df.format(budget));
         updateRemainingBudget(budget);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Budget Updated!");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            //formatSystem();
+        }
     }
 
     @FXML
@@ -182,7 +188,10 @@ public class HelloController {
             // Add the new transaction to the PieChart
             updateTransactionChart(newTransaction);
 
+            addExpense(Float.parseFloat(amountField.getText()));
         }
+
+
     }
 
     private Transaction createTransaction(String result) {
@@ -199,7 +208,20 @@ public class HelloController {
     }
 
     private void updateTransactionChart(Transaction newTransaction) {
-        PieChart.Data newData = new PieChart.Data(newTransaction.getExpenseName(), newTransaction.getAmount());
+        // Check if there is an existing slice for the same category
+        for (PieChart.Data existingData : transactionChart.getData()) {
+            if (existingData.getName().equals(newTransaction.getCategory())) {
+                // If found, update the existing slice by adding the new amount
+                existingData.setPieValue(existingData.getPieValue() + newTransaction.getAmount());
+
+                // Update the TableView
+                updateTransactionTable(newTransaction);
+                return; // Exit the method
+            }
+        }
+
+        // If no existing slice found, create a new slice for the category
+        PieChart.Data newData = new PieChart.Data(newTransaction.getCategory(), newTransaction.getAmount());
         transactionChart.getData().add(newData);
 
         // Update the TableView
