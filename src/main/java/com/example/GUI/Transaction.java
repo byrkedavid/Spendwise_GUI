@@ -26,7 +26,4 @@ public class Transaction {
         return amount.get();
     }
 
-    public DoubleProperty amountProperty() {
-        return amount;
-    }
 }

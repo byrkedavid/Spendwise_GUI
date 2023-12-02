@@ -51,10 +51,8 @@ public class HelloController {
     private TableColumn<Transaction, String> categoryColumn;
     @FXML
     private TableColumn<Transaction, Double> amountColumn;
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    @FXML
+    private TableColumn<Transaction, String> deleteColumn;
 
     @FXML
     private void initialize() {
@@ -84,6 +82,56 @@ public class HelloController {
         expenseNameColumn.setCellValueFactory(new PropertyValueFactory<>("expenseName"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        deleteColumn.setCellValueFactory(new PropertyValueFactory<>("delete"));
+        deleteColumn.setCellFactory(col -> {
+            TableCell<Transaction, String> cell = new TableCell<>() {
+                final Button deleteButton = new Button("Delete");
+
+                {
+                    deleteButton.setOnAction(event -> {
+                        Transaction transaction = getTableView().getItems().get(getIndex());
+                        deleteTransaction(transaction);
+                    });
+                }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        setGraphic(deleteButton);
+                    }
+                }
+            };
+            return cell;
+        });
+    }
+
+    // Method to handle the delete action
+    private void deleteTransaction(Transaction transaction) {
+        // Remove the transaction from the PieChart
+        removeTransactionFromChart(transaction);
+
+        // Update the remaining budget
+        remainingBudget += transaction.getAmount();
+        updateRemainingBudget(remainingBudget);
+
+        // Remove the transaction from the TableView
+        transactionTable.getItems().remove(transaction);
+    }
+
+    private void removeTransactionFromChart(Transaction transaction) {
+        for (PieChart.Data data : transactionChart.getData()) {
+            if (data.getName().equals(transaction.getCategory())) {
+                data.setPieValue(data.getPieValue() - transaction.getAmount());
+                // If the pie value becomes zero, remove the data from the chart
+                if (data.getPieValue() == 0) {
+                    transactionChart.getData().remove(data);
+                }
+                return;
+            }
+        }
     }
 
     @FXML
