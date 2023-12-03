@@ -14,7 +14,7 @@
    <children>
       <Button layoutX="609.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#addDeposit" prefWidth="85.0" text="Add Deposit" />
       <Button layoutX="609.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#setBudget" prefWidth="85.0" text="Set Budget" />
-      <Text layoutX="18.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spendwise" wrappingWidth="234.90782165527344">
+      <Text layoutX="18.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SpendWise" wrappingWidth="234.90782165527344">
          <font>
             <Font size="40.0" />
          </font>
@@ -37,8 +37,8 @@
          <columns>
             <TableColumn fx:id="expenseNameColumn" prefWidth="144.00000381469727" text="Expense" />
             <TableColumn fx:id="categoryColumn" prefWidth="129.59996032714844" text="Category" />
-            <TableColumn fx:id="amountColumn" prefWidth="143.20001220703125" text="Amount" />
-            <TableColumn fx:id="deleteColumn" prefWidth="57.5999755859375" text="Delete" />
+            <TableColumn fx:id="amountColumn" prefWidth="132.0" text="Amount" />
+            <TableColumn fx:id="deleteColumn" prefWidth="69.5999755859375" text="Delete" />
          </columns>
       </TableView>
       <PieChart fx:id="transactionChart" layoutX="497.0" layoutY="166.0" prefHeight="307.0" prefWidth="348.0" />

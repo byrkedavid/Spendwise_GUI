@@ -14,10 +14,6 @@ public class Transaction {
         this.amount = new SimpleDoubleProperty(amount);
     }
 
-    public String getExpenseName() {
-        return expenseName;
-    }
-
     public String getCategory() {
         return category;
     }

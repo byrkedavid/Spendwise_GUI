@@ -28,15 +28,12 @@ public class HelloController {
     DecimalFormat df = new DecimalFormat("#,###.00");
     float budget;
     float remainingBudget;
-    float expense;
     float deposit;
 
     @FXML
     private TextField budgetIn;
     @FXML
     private TextField depositIn;
-    @FXML
-    private TextField expenseIn;
     @FXML
     private Text monthlyBudgetOut;
     @FXML
@@ -238,8 +235,6 @@ public class HelloController {
 
             addExpense(Float.parseFloat(amountField.getText()));
         }
-
-
     }
 
     private Transaction createTransaction(String result) {
