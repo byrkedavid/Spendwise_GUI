@@ -244,10 +244,11 @@ public class HelloController {
         String expenseName = parts[0];
         String[] categoryAndAmount = parts[1].split("\\) - \\$");
         String category = categoryAndAmount[0];
+        String delete = null;
         double amount = Double.parseDouble(categoryAndAmount[1]);
 
         // Create a new Transaction object
-        return new Transaction(expenseName, category, amount);
+        return new Transaction(expenseName, category, amount, delete);
     }
 
     private void updateTransactionChart(Transaction newTransaction) {
